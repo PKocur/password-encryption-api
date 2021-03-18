@@ -22,7 +22,7 @@ public abstract class ControllerExceptionHandler {
         Map<String, String> validationErrors = new HashMap<>();
         for (ObjectError error : exception.getBindingResult().getAllErrors()) {
             String fieldName = error.getObjectName();
-            if(error instanceof FieldError) {
+            if (error instanceof FieldError) {
                 fieldName = ((FieldError) error).getField();
             }
             String message = error.getDefaultMessage();

@@ -3,26 +3,27 @@ package pl.pk99.encryptionapi.service.impl;
 import org.springframework.stereotype.Service;
 import pl.pk99.encryptionapi.service.SimplePasswordEncoder;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 
 @Service
 public class SimplePasswordEncoderImpl implements SimplePasswordEncoder {
 
-    private static final String HASHING_ALGORITHM = "SHA-512";
+    private static final String HASHING_ALGORITHM = "PBKDF2WithHmacSHA1";
 
     @Override
     public byte[] encode(String password, byte[] salt) {
-        MessageDigest md;
         try {
-            md = MessageDigest.getInstance(HASHING_ALGORITHM);
-        } catch (NoSuchAlgorithmException e) {
+            KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance(HASHING_ALGORITHM);
+            return factory.generateSecret(spec).getEncoded();
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new RuntimeException("Algorithm not available");
         }
-        md.update(salt);
-        return md.digest(password.getBytes(StandardCharsets.UTF_8));
     }
 
     @Override

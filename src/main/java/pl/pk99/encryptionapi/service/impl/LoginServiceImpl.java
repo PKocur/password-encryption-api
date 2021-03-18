@@ -3,12 +3,12 @@ package pl.pk99.encryptionapi.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.pk99.encryptionapi.entity.User;
+import pl.pk99.encryptionapi.error.ErrorMessages;
 import pl.pk99.encryptionapi.error.exception.ApplicationException;
 import pl.pk99.encryptionapi.form.LoginForm;
 import pl.pk99.encryptionapi.repository.UserRepository;
 import pl.pk99.encryptionapi.service.LoginService;
 import pl.pk99.encryptionapi.service.SimplePasswordEncoder;
-import pl.pk99.encryptionapi.error.ErrorMessages;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class LoginServiceImpl implements LoginService {
 
     private final UserRepository userRepository;
-    private final SimplePasswordEncoder simplePasswordEncoder;
+    private final SimplePasswordEncoder passwordEncoder;
 
     @Override
     public void login(LoginForm loginForm) {
@@ -33,7 +33,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     private void checkIfPasswordIsCorrect(String password, User user) {
-        byte[] hashedPassword = simplePasswordEncoder.encode(password, user.getSalt());
+        byte[] hashedPassword = passwordEncoder.encode(password, user.getSalt());
         if (!Arrays.equals(hashedPassword, user.getPassword())) {
             throw new ApplicationException(ErrorMessages.PASSWORD_INCORRECT, "password");
         }

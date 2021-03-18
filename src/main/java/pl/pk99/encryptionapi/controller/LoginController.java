@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 public class LoginController extends ControllerExceptionHandler {
-    
+
     private final LoginService loginService;
 
     @PostMapping("/login")
