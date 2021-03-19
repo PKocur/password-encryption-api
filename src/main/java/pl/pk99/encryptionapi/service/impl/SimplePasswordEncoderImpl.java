@@ -1,6 +1,6 @@
 package pl.pk99.encryptionapi.service.impl;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import pl.pk99.encryptionapi.service.SimplePasswordEncoder;
 
 import java.nio.charset.StandardCharsets;
@@ -8,7 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-@Service
+@Component
 public class SimplePasswordEncoderImpl implements SimplePasswordEncoder {
 
     private static final String HASHING_ALGORITHM = "SHA-512";
