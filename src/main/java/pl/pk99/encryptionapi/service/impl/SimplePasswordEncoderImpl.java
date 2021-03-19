@@ -1,6 +1,6 @@
 package pl.pk99.encryptionapi.service.impl;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import pl.pk99.encryptionapi.service.SimplePasswordEncoder;
 
 import javax.crypto.SecretKeyFactory;
@@ -10,7 +10,7 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 
-@Service
+@Component
 public class SimplePasswordEncoderImpl implements SimplePasswordEncoder {
 
     private static final String HASHING_ALGORITHM = "PBKDF2WithHmacSHA1";
