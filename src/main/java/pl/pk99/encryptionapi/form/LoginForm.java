@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import static pl.pk99.encryptionapi.validation.ValidationMessages.FIELD_LENGTH_BETWEEN;
-import static pl.pk99.encryptionapi.validation.ValidationMessages.FIELD_REQUIRED;
+import static pl.pk99.encryptionapi.validation.ValidationErrorMessages.FIELD_LENGTH_BETWEEN;
+import static pl.pk99.encryptionapi.validation.ValidationErrorMessages.FIELD_REQUIRED;
 
 @Getter
 @RequiredArgsConstructor

@@ -1,7 +1,7 @@
-package pl.pk99.encryptionapi.service.impl;
+package pl.pk99.encryptionapi.component.impl;
 
 import org.springframework.stereotype.Component;
-import pl.pk99.encryptionapi.service.SimplePasswordEncoder;
+import pl.pk99.encryptionapi.component.SimplePasswordEncoder;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
